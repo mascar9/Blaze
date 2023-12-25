@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="800dp"
+    android:background="@drawable/top_rounded_corners"
+   >
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Filter By Muscles"
+        android:textAllCaps="true"
+        android:textColor="@color/shiny_green"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/exit_exercises_filter_button"
+        android:layout_width="42dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:padding="2dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:srcCompat="@drawable/close_icon" />
+
+
+    <LinearLayout
+        android:id="@+id/checkbox_container"
+        android:layout_width="261dp"
+        android:layout_height="595dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="90dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <CheckBox
+            android:id="@+id/checkbox_quadriceps"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Quadriceps"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_hamstrings"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Hamstrings"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_glutes"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Glutes"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_calves"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Calves"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_chest"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Chest"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_shoulders"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Shoulders"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_triceps"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Triceps"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_lower_back"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Lower back"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_upper_back"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Upper back"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_back"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Back"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_biceps"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Biceps"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_abdominals"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Abdominals"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_obliques"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Obliques"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_forearms"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Forearms"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_upper_chest"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Upper Chest"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox_lower_chest"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Lower Chest"
+            android:textColor="@color/apple_white"
+            android:textStyle="bold" />
+        <!-- Add more CheckBox views programmatically -->
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

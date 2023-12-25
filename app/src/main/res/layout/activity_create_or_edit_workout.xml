@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/dark_black"
+    android:layout_height="match_parent"
+    tools:context=".CreateOrEditWorkout">
+
+    <EditText
+        android:id="@+id/workout_name"
+        android:layout_width="385dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/gradient_background_v2"
+        android:backgroundTint="@color/soft_black"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:hint="Workout Name"
+        android:textColor="@color/apple_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/edit_exercises_list"
+        android:layout_width="380dp"
+        android:layout_height="521dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/save_editWorkout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_button"
+        app:layout_constraintVertical_bias="0.118" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_button"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="44dp"
+        android:background="@drawable/gradient_background_v2"
+        android:backgroundTint="@color/soft_black"
+        android:text="Add Exercise"
+        android:textColor="@color/apple_white"
+        android:textStyle="bold"
+        app:icon="@drawable/add_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workout_name" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_editWorkout"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/gradient_background_v2"
+        android:backgroundTint="@color/shiny_green"
+        android:text="Save"
+
+        android:textColor="@color/dark_black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/mid_gray_rounded_corners"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    >
+
+    <CheckBox
+        android:id="@+id/exercise_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- Wrap the TextViews in a vertical LinearLayout -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/exercise_list_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bench Press"
+            android:textColor="@color/apple_white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/exercise_list_item_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hi, this is the description or sum"
+            android:textColor="@color/apple_white"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/dark_black"
+    android:layout_height="match_parent"
+    tools:context=".SingleWorkoutActivity">
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/workout_edit_button"
+        android:layout_width="116dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/gradient_background_v2"
+        android:text="EDIT"
+        android:textColor="@color/dark_black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/delete_editWorkout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/workout_name"
+        android:layout_width="280dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="28dp"
+        android:text="Workout X"
+        android:textAlignment="viewStart"
+        android:textColor="@color/shiny_green"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/exercises_list"
+        android:layout_width="364dp"
+        android:layout_height="575dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/workout_edit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workout_name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:adjustViewBounds="true"
+
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close_icon" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/delete_editWorkout"
+        android:layout_width="116dp"
+        android:layout_height="46dp"
+
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/gradient_background_v2"
+        android:backgroundTint="@color/soft_black"
+
+        android:text="Delete"
+        android:textColor="@color/red_letter"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/addWorkoutHistoryBtn"
+        android:layout_width="116dp"
+        android:layout_height="46dp"
+        android:scaleType="fitCenter"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/gradient_background_v2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/delete_editWorkout"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toEndOf="@+id/workout_edit_button"
+        app:srcCompat="@drawable/check_icon" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

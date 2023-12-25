@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/circle_background_locked"
+    android:layout_margin="10dp"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/badgeIcon"
+        android:layout_width="87dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center"
+        android:src="@drawable/winner" />
+
+    <TextView
+        android:id="@+id/badgeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Badge Title"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+
+    <!-- Add more TextViews for additional badge details -->
+
+</LinearLayout>

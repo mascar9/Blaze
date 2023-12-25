@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "438744542399",
+    "project_id": "shape-forge",
+    "storage_bucket": "shape-forge.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438744542399:android:b4522a18aca5e9d1f56a0a",
+        "android_client_info": {
+          "package_name": "com.example.shapeforge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438744542399-s65rn25j49jajt98mdj0jcaghotv8or0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shapeforge",
+            "certificate_hash": "d237740e07d47beef4ddc6b58d982f5407ce2827"
+          }
+        },
+        {
+          "client_id": "438744542399-gu06e24jcr6ar3l8rn8aktljcniujc0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsapdeyPud-6PT3jWRuhLvjl8Gtwf550U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438744542399-gr1bipabenb8f5of4p3htdr2mudtut9o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

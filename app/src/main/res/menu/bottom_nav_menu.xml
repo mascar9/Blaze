@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/destination_exercises"
+        android:title="Exercises"
+        android:icon="@drawable/list_icon" />
+    <item
+        android:id="@+id/destination_workout"
+        android:title="Workouts"
+        android:icon="@drawable/exercise_icon" />
+    <item
+        android:id="@+id/destination_home"
+        android:title="Home"
+        android:icon="@drawable/home_icon" />
+    <item
+        android:id="@+id/destination_badges"
+        android:title="PR Calc"
+        android:icon="@drawable/calc_ic" />
+    <item
+        android:id="@+id/destination_plan"
+        android:title="Plans"
+        android:icon="@drawable/event_icon" />
+</menu>
