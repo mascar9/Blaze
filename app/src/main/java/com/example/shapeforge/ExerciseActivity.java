@@ -131,39 +131,52 @@ public class ExerciseActivity extends AppCompatActivity {
 
                         switch (exerciseName){
                             case "Bench Press":
-                                if(prValue >= 60)
+                                if(prValue >= 60) {
                                     b = badges.get("Bench Beast I");
-                                else
-                                    badges.get("Bench Beast I").lockBadge();
+                                    GlobalClass.badges.put(b.getTitle(), b);
+                                }
+                                else{
+                                    GlobalClass.badges.remove("Bench Beast I");
+                                }
 
-                                if(prValue >= 80)
-                                    badges.get("Bench Beast II").unlockBadge();
-                                else
-                                    badges.get("Bench Beast II").lockBadge();
+                                if(prValue >= 80) {
+                                    b = badges.get("Bench Beast II");
+                                    GlobalClass.badges.put(b.getTitle(), b);
+                                }
+                                else{
+                                    GlobalClass.badges.remove("Bench Beast II");
+                                }
 
-                                if(prValue >= 100)
-                                    badges.get("Bench Beast III").unlockBadge();
-                                else
-                                    badges.get("Bench Beast III").lockBadge();
+                                if(prValue >= 100) {
+                                    b = badges.get("Bench Beast III");
+                                    GlobalClass.badges.put(b.getTitle(), b);
+                                }
+                                else {
+                                    GlobalClass.badges.remove("Bench Beast III");
+                                }
 
-                                if(prValue >= 120)
-                                    badges.get("Bench Beast IV").unlockBadge();
-                                else
-                                    badges.get("Bench Beast IV").lockBadge();
+                                if(prValue >= 120) {
+                                    b = badges.get("Bench Beast IV");
+                                    GlobalClass.badges.put(b.getTitle(), b);
+                                }else {
+                                    GlobalClass.badges.remove("Bench Beast IV");
+                                }
 
-                                if(prValue >= 140)
-                                    badges.get("Bench Beast V").unlockBadge();
-                                else
-                                    badges.get("Bench Beast V").lockBadge();
+                                if(prValue >= 140) {
+                                    b = badges.get("Bench Beast V");
+                                    GlobalClass.badges.put(b.getTitle(), b);
+                                }else{
+                                    GlobalClass.badges.remove("Bench Beast V");
+                                }
 
-                                if(prValue >= 160)
-                                    badges.get("Bench Beast VI").unlockBadge();
-                                else
-                                    badges.get("Bench Beast VI").lockBadge();
 
+                                if(prValue >= 160) {
+                                    b = badges.get("Bench Beast VI");
+                                    GlobalClass.badges.put(b.getTitle(), b);
+                                }else {
+                                    GlobalClass.badges.remove("Bench Beast VI");
+                                }
                         }
-
-                        GlobalClass.badges.put(b.getTitle(), b);
 
                         snippets.updateUserBadges(snippets.getUserID(), GlobalClass.badges, new ReadAndWriteSnippets.OnUserBadgesUpdateListener() {
                             @Override

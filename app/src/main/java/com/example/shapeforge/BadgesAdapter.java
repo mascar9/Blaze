@@ -49,11 +49,14 @@ public class BadgesAdapter extends RecyclerView.Adapter<BadgesAdapter.BadgeViewH
     public void onBindViewHolder(@NonNull BadgeViewHolder holder, int position) {
         Badge badge = badgesList.get(position);
 
-        Drawable iconDrawable = badge.isUnlocked()
-                ? ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.winner)
-                //? ContextCompat.getDrawable(holder.itemView.getContext(), badge.getIconResource())
-                : ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.winner_gray);
+        Drawable iconDrawable;
 
+
+        if (GlobalClass.badges.containsKey(badge.getTitle())) {
+            iconDrawable = ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.winner);
+        } else {
+            iconDrawable = ContextCompat.getDrawable(holder.itemView.getContext(), R.drawable.winner_gray);
+        }
 
         holder.badgeIcon.setImageDrawable(iconDrawable);
 
