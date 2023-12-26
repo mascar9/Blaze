@@ -15,14 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BadgesAdapter extends RecyclerView.Adapter<BadgesAdapter.BadgeViewHolder> {
 
-    private LinkedHashMap<String, Badge> badges;
+    private Map<String, Badge> badges;
     private List<Badge> badgesList;
 
 
-    public BadgesAdapter(LinkedHashMap<String, Badge> badges) {
+    public BadgesAdapter(Map<String, Badge> badges) {
         this.badges = badges;
 
         this.badgesList = new ArrayList<>(badges.values());

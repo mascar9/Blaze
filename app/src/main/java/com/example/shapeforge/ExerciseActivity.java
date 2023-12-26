@@ -95,7 +95,8 @@ public class ExerciseActivity extends AppCompatActivity {
 
         textViewExercise.setText(exerciseName);
 
-        LinkedHashMap<String, Badge> badges = GlobalClass.getBadgesList(this);
+
+        LinkedHashMap<String, Badge> badges = GlobalClass.badgeList;
 
         uploadPrButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,7 +191,7 @@ public class ExerciseActivity extends AppCompatActivity {
                             }
                         });
 
-                        GlobalClass.saveBadgesList(ExerciseActivity.this, badges);
+                        //GlobalClass.saveBadgesList(ExerciseActivity.this, badges);
 
                     } catch (NumberFormatException e) {
                         // Handle the case where the input is not a valid integer

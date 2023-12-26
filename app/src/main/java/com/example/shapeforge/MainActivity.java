@@ -119,6 +119,23 @@ public class MainActivity extends AppCompatActivity {
 
          */
 
+        snippets.getUserBadges(user.getUid(), new ReadAndWriteSnippets.OnUserBadgesRetrieveListener() {
+            @Override
+            public void onUserBadgesRetrieved(Map<String, Badge> badges) {
+                GlobalClass.badges = badges;
+            }
+
+            @Override
+            public void onUserBadgesNotFound() {
+
+            }
+
+            @Override
+            public void onUserBadgesError(String error) {
+
+            }
+        });
+
         snippets.getPRsForUser(user.getUid(), new ReadAndWriteSnippets.OnPRsRetrieveListener() {
 
             @Override
@@ -249,10 +266,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void addBadges() {
 
-        String a = GlobalClass.badgeList.size() +"";
-        Log.d("Hi", a);
-        //if(GlobalClass.getBadgesList(MainActivity.this) == null) {
-        if(GlobalClass.getBadgesList(MainActivity.this).size() == 0) {
+
+        if(GlobalClass.badgeList.size() == 0) {
 
             GlobalClass.badgeList.put("Bench Beast I", new Badge("Bench Beast I", R.drawable.winner, "Achieve a 60 kg (220 lbs) bench press."));
             GlobalClass.badgeList.put("Bench Beast II", new Badge("Bench Beast II", R.drawable.winner, "Achieve a 80 kg (220 lbs) bench press."));
@@ -287,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
             GlobalClass.badgeList.put("Rest week?", new Badge("Rest week?", R.drawable.winner, "Don’t perform a workout for a week."));
 
 
-            GlobalClass.saveBadgesList(this, GlobalClass.badgeList);
+            //GlobalClass.saveBadgesList(this, GlobalClass.badgeList);
         }
 
     }
@@ -299,10 +314,7 @@ public class MainActivity extends AppCompatActivity {
         String userID = snippets.getUserID();
 
 
-/*
-
-        if(GlobalClass.getWorkoutList(MainActivity.this) == null) {
-            //if(0 == 0) {
+        if(GlobalClass.getExerciseList(MainActivity.this) == null) {
 
                 // Exercise 1: Squats
                 ArrayList<String> squatsTargetedMuscles = new ArrayList<>();
@@ -657,16 +669,14 @@ public class MainActivity extends AppCompatActivity {
 
 
                 GlobalClass.saveExerciseList(this, GlobalClass.exerciseList);
-                GlobalClass.saveWorkoutList(this, GlobalClass.workoutList);
 
 
-                int i = GlobalClass.getWorkoutList(this).size();
 
             }
 
 
 
- */
+
         }
     }
 

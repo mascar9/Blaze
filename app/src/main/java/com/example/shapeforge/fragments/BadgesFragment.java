@@ -29,6 +29,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class BadgesFragment extends Fragment {
@@ -52,7 +53,7 @@ public class BadgesFragment extends Fragment {
         badgesRecyclerView.setLayoutManager(layoutManager);
 
         // Create a list of badges (you can add more badges programmatically)
-        LinkedHashMap<String, Badge> badges = GlobalClass.getBadgesList(getContext());
+        Map<String, Badge> badges = GlobalClass.badgeList;
 
         // Set up the RecyclerView adapter
         BadgesAdapter badgesAdapter = new BadgesAdapter(badges);

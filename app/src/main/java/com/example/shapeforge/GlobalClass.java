@@ -83,24 +83,6 @@ public class GlobalClass {
         return gson.fromJson(json, type);
     }
 
-    public static void saveWorkoutList(Context context, ArrayList<Workout> workoutList) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(workoutList);
-        editor.putString(KEY_WORKOUT_LIST, json);
-        editor.apply();
-        Log.d("JSON", json);
-    }
-
-    public static ArrayList<Workout> getWorkoutList(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(KEY_WORKOUT_LIST, null);
-        Type type = new TypeToken<ArrayList<Workout>>() {}.getType();
-
-        return gson.fromJson(json, type);
-    }
 
     public static void savePlansList(Context context, LinkedHashMap<LocalDate, String> plansList) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
@@ -135,19 +117,6 @@ public class GlobalClass {
         editor.putString(KEY_BADGES_LIST, json);
         editor.apply();
         Log.d("JSON", json);
-    }
-
-    public static LinkedHashMap<String, Badge> getBadgesList(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        Gson gson = new GsonBuilder().create();
-        String json = sharedPreferences.getString(KEY_BADGES_LIST, null);
-
-        if (json == null) {
-            return new LinkedHashMap<>(); // Return an empty map if JSON is null
-        }
-
-        Type type = new TypeToken<LinkedHashMap<String, Badge>>() {}.getType();
-        return gson.fromJson(json, type);
     }
 
 
