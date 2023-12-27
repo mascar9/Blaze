@@ -1,7 +1,5 @@
 package com.example.shapeforge;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -11,19 +9,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.ServerValue;
-import com.google.firebase.database.Transaction;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ReadAndWriteSnippets {
 
@@ -474,6 +470,107 @@ public class ReadAndWriteSnippets {
         void onUserPlansRetrieved(Map<LocalDate, String> plansList);
         void onUserPlansNotFound();
         void onUserPlansError(String error);
+    }
+
+    public void searchUsers(String query, final OnUserSearchListener listener) {
+        DatabaseReference usersRef = mDatabase.child("users");
+
+        usersRef.orderByChild("username")
+                .startAt(query)
+                .endAt(query + "\uf8ff")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        List<User> userList = new ArrayList<>();
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            User user = snapshot.getValue(User.class);
+                            if (user != null) {
+                                userList.add(user);
+                            }
+                        }
+
+                        listener.onUserSearchResult(userList);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        listener.onUserSearchError(databaseError.getMessage());
+                    }
+                });
+    }
+
+    public interface OnUserSearchListener {
+        void onUserSearchResult(List<User> userList);
+        void onUserSearchError(String error);
+    }
+
+    public void getFriendsPosts(String userId, final OnFriendsPostsListener listener) {
+        DatabaseReference friendsRef = mDatabase.child("users").child(userId).child("friendsList");
+        friendsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    List<String> friendUserIds = new ArrayList<>();
+                    for (DataSnapshot friendSnapshot : dataSnapshot.getChildren()) {
+                        friendUserIds.add(friendSnapshot.getKey());
+                    }
+                    listener.onFriendsUserIdsRetrieved(friendUserIds);
+                } else {
+                    listener.onFriendsNotFound();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                listener.onFriendsPostsError(databaseError.getMessage());
+            }
+        });
+    }
+
+    public interface OnFriendsPostsListener {
+        void onFriendsUserIdsRetrieved(List<String> friendUserIds);
+        void onFriendsNotFound();
+        void onFriendsPostsError(String error);
+    }
+
+    public void addFriend(String userId, String friendUserId, final OnFriendOperationListener listener) {
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("friendsList").child(friendUserId);
+        userRef.setValue(true)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        listener.onFriendOperationSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onFriendOperationError(e.getMessage());
+                    }
+                });
+    }
+
+    public void removeFriend(String userId, String friendUserId, final OnFriendOperationListener listener) {
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("friendsList").child(friendUserId);
+        userRef.removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        listener.onFriendOperationSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onFriendOperationError(e.getMessage());
+                    }
+                });
+    }
+
+    public interface OnFriendOperationListener {
+        void onFriendOperationSuccess();
+        void onFriendOperationError(String error);
     }
 
 

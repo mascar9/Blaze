@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_black"
+    tools:context=".Social.SearchFriendsActivity">
+
+    <TextView
+        android:id="@+id/title_main"
+        android:layout_width="273dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="20dp"
+        android:lineSpacingExtra="4dp"
+        android:text="BLAZE"
+        android:textAlignment="center"
+        android:textColor="@color/shiny_green"
+        android:textSize="60sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/closeSFButton"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close_icon" />
+
+    <EditText
+        android:id="@+id/searchUsersET"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/mid_gray_rounded_corners"
+        android:drawableLeft="@drawable/search_ic"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Search"
+        android:inputType="text"
+        android:paddingLeft="15dp"
+        android:textColor="@color/apple_white"
+        android:textColorHint="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_main" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/usersRV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchUsersET" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

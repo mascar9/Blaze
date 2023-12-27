@@ -8,17 +8,6 @@
     tools:context=".fragments.ProfileFrag">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="194dp"
-        android:layout_height="198dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/lifting_astronaut" />
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -63,14 +52,17 @@
 
     <ImageButton
         android:id="@+id/profileBtn"
-        android:layout_width="60dp"
-        android:layout_height="67dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="28dp"
         android:background="@drawable/mid_gray_rounded_corners_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/app_icon_nobg"
+         />
 
     <TextView
         android:id="@+id/Name_tv"
@@ -97,6 +89,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name_tv" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/searchFriendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/mid_gray_rounded_corners_border_v2"
+        android:paddingHorizontal="10dp"
+        android:text="Search User"
+        android:textColor="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

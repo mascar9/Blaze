@@ -1,6 +1,7 @@
 package com.example.shapeforge;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +19,16 @@ public class User {
 
     private Map<LocalDate, String> plansList;
 
+    private Map<String, Boolean> followers;
+
+
+
     public User(String name, String username, List<Workout> workouts){
 
         this.name = name;
         this.username = username;
         this.workouts = workouts;
+        this.followers = new HashMap<>();
         this.badges = new HashMap<>();
         this.plansList = new HashMap<>();
 

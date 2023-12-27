@@ -14,6 +14,7 @@ import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.text.SpannableString;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 import com.example.shapeforge.GlobalClass;
 import com.example.shapeforge.ProfileActivity;
 import com.example.shapeforge.R;
+import com.example.shapeforge.Social.SearchFriendsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -57,11 +59,13 @@ public class ProfileFrag extends Fragment {
 
         TextView nameWelcomeTV, usernameTV, stat3, stat4, WorkoutsNrDisplay;
         ImageButton profileButton;
+        AppCompatButton seachFriendBtn;
 
         nameWelcomeTV = rootView.findViewById(R.id.Name_tv);
         profileButton = rootView.findViewById(R.id.profileBtn);
         usernameTV = rootView.findViewById(R.id.username_profile_et);
         WorkoutsNrDisplay = rootView.findViewById(R.id.workoutNrDisplay);
+        seachFriendBtn = rootView.findViewById(R.id.searchFriendButton);
 
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
             // Callback logic here
@@ -74,10 +78,20 @@ public class ProfileFrag extends Fragment {
         });
 
         nameWelcomeTV.setText(GlobalClass.user.getName());
-        usernameTV.setText(GlobalClass.user.getUsername());
+        usernameTV.setText("@" + GlobalClass.user.getUsername());
 
 
         //WorkoutsNrDisplay.setText("Workouts:\n" + GlobalClass.workoutList.size());
+
+
+        seachFriendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchFriendIntent = new Intent(getContext(), SearchFriendsActivity.class);
+                startActivity(searchFriendIntent);
+            }
+        });
+
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
