@@ -40,10 +40,9 @@ public class GlobalClass {
 
     public static List<Workout> workoutList = new ArrayList<>();
 
-    public static LinkedHashMap<LocalDate, String> plansList = new LinkedHashMap<>();
-
     public static LinkedHashMap<String, Badge> badgeList = new LinkedHashMap<>();
 
+    public static Map<LocalDate, String> plansList = new HashMap<>();
     public static Map<String, Long> PRs = new HashMap<>();
 
     public static Map<String, Badge> badges = new HashMap<>();
@@ -53,9 +52,6 @@ public class GlobalClass {
     public static String name;
 
     public static User user = new User();
-
-
-
 
 
 
@@ -83,41 +79,6 @@ public class GlobalClass {
         return gson.fromJson(json, type);
     }
 
-
-    public static void savePlansList(Context context, LinkedHashMap<LocalDate, String> plansList) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(plansList);
-        editor.putString(KEY_PLANS_LIST, json);
-        editor.apply();
-        Log.d("JSON", json);
-    }
-
-    public static LinkedHashMap<LocalDate, String> getPlansList(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
-                .create();
-        String json = sharedPreferences.getString(KEY_PLANS_LIST, null);
-
-        if (json == null) {
-            return new LinkedHashMap<>(); // Return an empty map if JSON is null
-        }
-
-        Type type = new TypeToken<LinkedHashMap<LocalDate, String>>() {}.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public static void saveBadgesList(Context context, LinkedHashMap<String, Badge> badgeList) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new GsonBuilder().create();
-        String json = gson.toJson(badgeList);
-        editor.putString(KEY_BADGES_LIST, json);
-        editor.apply();
-        Log.d("JSON", json);
-    }
 
 
 }

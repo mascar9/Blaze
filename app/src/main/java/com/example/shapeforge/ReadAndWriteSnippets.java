@@ -18,6 +18,8 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -399,6 +401,79 @@ public class ReadAndWriteSnippets {
         void onUserBadgesRetrieved(Map<String, Badge> badges);
         void onUserBadgesNotFound();
         void onUserBadgesError(String error);
+    }
+
+    public void updateUserPlans(String userId, Map<LocalDate, String> plansList, final OnUserPlansUpdateListener listener) {
+        Map<String, String> convertedPlansList = new HashMap<>();
+
+        for (Map.Entry<LocalDate, String> entry : plansList.entrySet()) {
+            String dateString = entry.getKey().toString();
+            convertedPlansList.put(dateString, entry.getValue());
+        }
+
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("plansList");
+
+        userRef.setValue(convertedPlansList)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        listener.onUserPlansUpdateSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onUserPlansUpdateError(e.getMessage());
+                    }
+                });
+    }
+
+    // Method to get user plans
+    public void getUserPlans(String userId, final OnUserPlansRetrieveListener listener) {
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("plansList");
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Retrieve the existing plans data
+                    Map<LocalDate, String> plansList = new HashMap<>();
+
+                    for (DataSnapshot planSnapshot : dataSnapshot.getChildren()) {
+                        // Convert the timestamp (String) to LocalDate
+                        String dateString = planSnapshot.getKey();
+                        LocalDate date = LocalDate.parse(dateString);
+
+                        String plan = planSnapshot.getValue(String.class);
+                        if (date != null && plan != null) {
+                            plansList.put(date, plan);
+                        }
+                    }
+
+                    listener.onUserPlansRetrieved(plansList);
+                } else {
+                    listener.onUserPlansNotFound();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                listener.onUserPlansError(databaseError.getMessage());
+            }
+        });
+    }
+
+    // ... (existing interfaces)
+
+    public interface OnUserPlansUpdateListener {
+        void onUserPlansUpdateSuccess();
+        void onUserPlansUpdateError(String error);
+    }
+
+    public interface OnUserPlansRetrieveListener {
+        void onUserPlansRetrieved(Map<LocalDate, String> plansList);
+        void onUserPlansNotFound();
+        void onUserPlansError(String error);
     }
 
 

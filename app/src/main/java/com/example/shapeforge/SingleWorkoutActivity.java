@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SingleWorkoutActivity extends AppCompatActivity {
 
@@ -57,7 +58,15 @@ public class SingleWorkoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_workout);
 
-        LinkedHashMap<LocalDate, String> plans = GlobalClass.getPlansList(this);
+        Map<LocalDate, String> plans = GlobalClass.plansList;
+
+        FirebaseDatabase database;
+        DatabaseReference reference;
+        database = FirebaseDatabase.getInstance("https://shape-forge-default-rtdb.europe-west1.firebasedatabase.app");
+        reference = database.getReference();
+
+        ReadAndWriteSnippets snippets = new ReadAndWriteSnippets(reference);
+        String userID = snippets.getUserID();
 
         editButton = findViewById(R.id.workout_edit_button);
         closeButton = findViewById(R.id.closeButton);
@@ -111,69 +120,6 @@ public class SingleWorkoutActivity extends AppCompatActivity {
         });
 
 
-/*
-        snippets.getWorkoutList(userID, new ReadAndWriteSnippets.OnWorkoutListListener() {
-            @Override
-            public void onWorkoutListRetrieved(List<Workout> workoutList) {
-                // Handle successful retrieval of the workout list
-                //workouts = workoutList;
-
-
-                workout = null;
-                    for (int k = 0; k < workouts.size(); k++) {
-                        String name = workouts.get(k).getName();
-                        if (name.trim().equalsIgnoreCase(workoutName.trim())) {
-                            workout = workouts.get(k);
-                            break;
-                        }
-                    }
-
-                exercisesNames = workout.getExercisesNames();
-
-                workoutTitle.setText(workoutName);
-
-                adapter = new MyAdapterForWorkoutExercises(exercisesNames, workout, getApplicationContext());
-                int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.item_spacing); // Define the desired spacing in pixels
-                ItemSpacingDecoration itemDecoration = new ItemSpacingDecoration(spacingInPixels);
-                exercise_list_recycler.removeItemDecoration(itemDecoration);
-                exercise_list_recycler.addItemDecoration(itemDecoration);
-                exercise_list_recycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                exercise_list_recycler.setAdapter(adapter);
-
-
-                adapter.setOnClickListener(new MyAdapterForWorkoutExercises.OnClickListener() {
-                    @Override
-                    public void onClick(int position, String exerciseName) {
-                        Intent intent = new Intent(SingleWorkoutActivity.this, ExerciseActivity.class);
-                        intent.putExtra("exercise_info", exerciseName);
-                        intent.putExtra("selected_workout", workoutName);
-                        startActivity(intent);
-                    }
-                });
-
-
-
-            }
-
-            @Override
-            public void onWorkoutListNotFound() {
-
-            }
-
-            @Override
-            public void onUserNotFound() {
-
-            }
-
-            @Override
-            public void onWorkoutListError(String error) {
-
-            }
-        });
-
-
- */
-
 
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,13 +143,6 @@ public class SingleWorkoutActivity extends AppCompatActivity {
                 //GlobalClass.saveWorkoutList(SingleWorkoutActivity.this, workoutList);
                 //TODO Editar workout
 
-                FirebaseDatabase database;
-                DatabaseReference reference;
-                database = FirebaseDatabase.getInstance("https://shape-forge-default-rtdb.europe-west1.firebasedatabase.app");
-                reference = database.getReference();
-
-                ReadAndWriteSnippets snippets = new ReadAndWriteSnippets(reference);
-                String userID = snippets.getUserID();
 
                 snippets.deleteWorkoutFromUser(userID, workout, new ReadAndWriteSnippets.OnWorkoutDeleteListener() {
                     @Override
@@ -239,9 +178,20 @@ public class SingleWorkoutActivity extends AppCompatActivity {
         addWorkoutHistoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                plans.put(LocalDate.now(), workoutName);
-                GlobalClass.savePlansList(getBaseContext(), plans);
-                Toast.makeText(getBaseContext(), "Workout was recorded", Toast.LENGTH_SHORT).show();
+                GlobalClass.plansList.put(LocalDate.now(), workoutName);
+
+                snippets.updateUserPlans(userID, GlobalClass.plansList, new ReadAndWriteSnippets.OnUserPlansUpdateListener() {
+                    @Override
+                    public void onUserPlansUpdateSuccess() {
+                        Toast.makeText(getBaseContext(), "Workout was recorded", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onUserPlansUpdateError(String error) {
+                        Toast.makeText(getBaseContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
             }
         });

@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -181,6 +182,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onWorkoutListError(String error) {
 
+            }
+        });
+
+
+// Retrieve user plans
+        snippets.getUserPlans(user.getUid(), new ReadAndWriteSnippets.OnUserPlansRetrieveListener() {
+            @Override
+            public void onUserPlansRetrieved(Map<LocalDate, String> plansList) {
+                GlobalClass.plansList = plansList;
+            }
+
+            @Override
+            public void onUserPlansNotFound() {
+                // Handle scenario where plans are not found
+            }
+
+            @Override
+            public void onUserPlansError(String error) {
+                // Handle error
             }
         });
 

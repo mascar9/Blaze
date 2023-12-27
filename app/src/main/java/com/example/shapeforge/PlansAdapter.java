@@ -14,18 +14,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PlansAdapter extends RecyclerView.Adapter<PlanViewHolder> {
     private Context context;
     private List<LocalDate> dates;
     private List<String> workouts;
-    private LinkedHashMap<LocalDate, String> plans;
+    private Map<LocalDate, String> plans;
 
-    public PlansAdapter(Context context, LinkedHashMap<LocalDate, String> plans) {
+    private ReadAndWriteSnippets snippets;
+
+
+
+    public PlansAdapter(Context context, ReadAndWriteSnippets snippets) {
         this.context = context;
-        this.plans = plans;
+        this.plans = GlobalClass.plansList;
         this.dates = new ArrayList<>(plans.keySet());
         this.workouts = new ArrayList<>(plans.values());
+        this.snippets = snippets;
     }
 
     @NonNull
@@ -56,10 +62,22 @@ public class PlansAdapter extends RecyclerView.Adapter<PlanViewHolder> {
         plans.remove(dateToRemove);
         notifyItemRemoved(position);
 
-        GlobalClass.savePlansList(context, plans);
+        GlobalClass.plansList = plans;
+
+        snippets.updateUserPlans(snippets.getUserID(), GlobalClass.plansList, new ReadAndWriteSnippets.OnUserPlansUpdateListener() {
+            @Override
+            public void onUserPlansUpdateSuccess() {
+                // Handle success
+                Toast.makeText(context, "Removed from history", Toast.LENGTH_SHORT).show();            }
+
+            @Override
+            public void onUserPlansUpdateError(String error) {
+                // Handle error
+                Toast.makeText(context, "Error: "+ error, Toast.LENGTH_SHORT).show();            }
+        });
 
         // You can also perform additional actions when deleting, such as updating UI or storage
-        Toast.makeText(context, "Removed from history", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Removed from history", Toast.LENGTH_SHORT).show();
     }
 }
 

@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
@@ -39,7 +41,7 @@ public class PlansActivity extends AppCompatActivity {
 
     private PieChart pieChart;
 
-    private LinkedHashMap<LocalDate, String> plans;
+    private Map<LocalDate, String> plans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +62,18 @@ public class PlansActivity extends AppCompatActivity {
         workout_color_rv = findViewById(R.id.piechartWorkoutsNames);
 
 
-        plans = GlobalClass.getPlansList(this);
+        plans = GlobalClass.plansList;
 
 
+        FirebaseDatabase database;
+        DatabaseReference reference;
+        database = FirebaseDatabase.getInstance("https://shape-forge-default-rtdb.europe-west1.firebasedatabase.app");
+        reference = database.getReference();
 
+        ReadAndWriteSnippets snippets = new ReadAndWriteSnippets(reference);
+        String userID = snippets.getUserID();
 
-        PlansAdapter adapter = new PlansAdapter(this, plans);
+        PlansAdapter adapter = new PlansAdapter(this, snippets);
         workout_history_rv.setLayoutManager(new LinearLayoutManager(this));
         workout_history_rv.addItemDecoration(new CustomDividerItemDecoration(this));
         workout_history_rv.setAdapter(adapter);
