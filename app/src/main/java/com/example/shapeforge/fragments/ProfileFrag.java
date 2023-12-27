@@ -1,51 +1,28 @@
 package com.example.shapeforge.fragments;
 
-import static androidx.fragment.app.FragmentManager.TAG;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.shapeforge.GlobalClass;
-import com.example.shapeforge.ProfileActivity;
 import com.example.shapeforge.R;
 import com.example.shapeforge.Social.SearchFriendsActivity;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
-
+import java.util.List;
+import java.util.Map;
 
 
 public class ProfileFrag extends Fragment {
@@ -53,19 +30,24 @@ public class ProfileFrag extends Fragment {
     private ActivityResultLauncher<PickVisualMediaRequest> pickMedia;
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        TextView nameWelcomeTV, usernameTV, stat3, stat4, WorkoutsNrDisplay;
+        TextView nameWelcomeTV, usernameTV, followersDisplay, followingDisplay, WorkoutsNrDisplay;
         ImageButton profileButton;
         AppCompatButton seachFriendBtn;
+        int nrFollowers = 0;
 
         nameWelcomeTV = rootView.findViewById(R.id.Name_tv);
         profileButton = rootView.findViewById(R.id.profileBtn);
         usernameTV = rootView.findViewById(R.id.username_profile_et);
         WorkoutsNrDisplay = rootView.findViewById(R.id.workoutNrDisplay);
         seachFriendBtn = rootView.findViewById(R.id.searchFriendButton);
+        followersDisplay = rootView.findViewById(R.id.followersTV);
+        followingDisplay = rootView.findViewById(R.id.followingTV);
+
 
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
             // Callback logic here
@@ -78,11 +60,24 @@ public class ProfileFrag extends Fragment {
         });
 
         nameWelcomeTV.setText(GlobalClass.user.getName());
-        usernameTV.setText("@" + GlobalClass.user.getUsername());
+        usernameTV.setText(GlobalClass.user.getUsername());
 
 
-        //WorkoutsNrDisplay.setText("Workouts:\n" + GlobalClass.workoutList.size());
+        WorkoutsNrDisplay.setText(GlobalClass.workoutList.size() + "\nWorkouts");
+        Map<String, Boolean> followers = GlobalClass.user.getFollowers();
 
+        if(followers != null) {
+            List<Boolean> followersBools = new ArrayList<>(followers.values());
+            for (int k = 0; k < followersBools.size(); k++) {
+                if (followersBools.get(k))
+                    nrFollowers++;
+            }
+            followersDisplay.setText(nrFollowers + "\nFollowers");
+            followingDisplay.setText(followers.size() + "\nFollowing");
+        }else {
+            followersDisplay.setText("0\n Followers");
+            followingDisplay.setText("0\nFollowing");
+        }
 
         seachFriendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,8 +96,6 @@ public class ProfileFrag extends Fragment {
                         .build());
             }
         });
-
-
 
 
         return rootView;

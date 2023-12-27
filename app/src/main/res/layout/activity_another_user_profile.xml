@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_black"
+    android:background="@color/dark_black"
     tools:context=".fragments.ProfileFrag">
 
 
@@ -12,26 +12,27 @@
         android:id="@+id/followersTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="32dp"
         android:padding="5dp"
         android:text="Followers:\n24"
         android:textAlignment="center"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_profile_et" />
+        app:layout_constraintBottom_toBottomOf="@+id/profileBtn"
+        app:layout_constraintStart_toEndOf="@+id/profileBtn"
+        app:layout_constraintTop_toTopOf="@+id/profileBtn" />
 
     <TextView
         android:id="@+id/followingTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="27\nFollowing"
+        android:text="Following:\n27"
         android:textAlignment="center"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/workoutNrDisplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toEndOf="@+id/followersTV"
         app:layout_constraintTop_toTopOf="@+id/followersTV" />
 
@@ -39,61 +40,82 @@
         android:id="@+id/workoutNrDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="46dp"
         android:padding="5dp"
-        android:text="4\nWorkouts"
+        android:text="Workouts:\n4"
         android:textAlignment="center"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/followingTV"
+        app:layout_constraintBottom_toBottomOf="@+id/followersTV"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/followingTV"
         app:layout_constraintTop_toTopOf="@+id/followersTV" />
 
     <ImageButton
         android:id="@+id/profileBtn"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
         android:background="@drawable/mid_gray_circle_border_v2"
         android:scaleType="fitCenter"
         android:src="@drawable/app_icon_nobg"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exitAUPButton" />
+
+    <ImageButton
+        android:id="@+id/exitAUPButton"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/arrow_back_icon"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Name_tv"
-        android:layout_width="234dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="379dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:autoSizeMaxTextSize="24sp"
         android:autoSizeMinTextSize="12sp"
         android:autoSizeTextType="uniform"
-        android:text="Pedro Mascarenhas"
+        android:text="Nome Teste"
         android:textColor="@color/apple_white"
-        app:layout_constraintStart_toEndOf="@+id/profileBtn"
-        app:layout_constraintTop_toTopOf="@+id/profileBtn" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileBtn" />
 
     <TextView
         android:id="@+id/username_profile_et"
-        android:layout_width="109dp"
-        android:layout_height="27dp"
+        android:layout_width="317dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="16dp"
         android:autoSizeTextType="uniform"
-        android:text="\@Mascar9"
-        android:textColor="@color/shiny_green"
-        app:layout_constraintStart_toStartOf="@+id/Name_tv"
-        app:layout_constraintTop_toBottomOf="@+id/Name_tv" />
+        android:text="username teste"
+        android:textColor="@color/apple_white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.288"
+        app:layout_constraintStart_toEndOf="@+id/exitAUPButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/searchFriendButton"
+        android:id="@+id/addFriendButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/mid_gray_rounded_corners_border_v2"
         android:paddingHorizontal="10dp"
-        android:text="Search User"
-        android:textColor="@color/light_gray"
+        android:text="Follow"
+        android:textColor="@color/apple_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"

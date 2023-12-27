@@ -79,7 +79,7 @@ public class SearchFriendsActivity extends AppCompatActivity {
                     @Override
                     public void onUserSearchResult(List<User> userList) {
 
-                        UserAdapter userAdapter = new UserAdapter(userList);
+                        UserAdapter userAdapter = new UserAdapter(userList, snippets.getUserID(), getApplicationContext());
                         usersRV.setAdapter(userAdapter);
                     }
 

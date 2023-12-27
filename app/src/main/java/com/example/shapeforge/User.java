@@ -21,6 +21,7 @@ public class User {
 
     private Map<String, Boolean> followers;
 
+    private List<String> requestedToFollowList;
 
 
     public User(String name, String username, List<Workout> workouts){
@@ -31,7 +32,7 @@ public class User {
         this.followers = new HashMap<>();
         this.badges = new HashMap<>();
         this.plansList = new HashMap<>();
-
+        this.requestedToFollowList = new ArrayList<>();
     }
 
     public User(){
@@ -87,5 +88,21 @@ public class User {
 
     public void setBadges(Map<String, Badge> badges) {
         this.badges = badges;
+    }
+
+    public Map<String, Boolean> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Map<String, Boolean> followers) {
+        this.followers = followers;
+    }
+
+    public List<String> getRequestedToFollowList() {
+        return requestedToFollowList;
+    }
+
+    public void setRequestedToFollowList(List<String> requestedToFollowList) {
+        this.requestedToFollowList = requestedToFollowList;
     }
 }

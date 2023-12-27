@@ -2,13 +2,16 @@ package com.example.shapeforge;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -571,6 +574,51 @@ public class ReadAndWriteSnippets {
     public interface OnFriendOperationListener {
         void onFriendOperationSuccess();
         void onFriendOperationError(String error);
+    }
+
+    public void updateRequestedToFollowList(String userId, List<String> updatedList) {
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("requestedToFollowList");
+        userRef.setValue(updatedList)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Successfully updated requestedToFollowList
+                        } else {
+                            // Handle the error
+                        }
+                    }
+                });
+    }
+
+    // Method to get the requestedToFollowList for a user
+    public void getRequestedToFollowList(String userId, final OnRequestedToFollowListListener listener) {
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("requestedToFollowList");
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    List<String> requestedToFollowList = dataSnapshot.getValue(new GenericTypeIndicator<List<String>>() {});
+                    listener.onRequestedToFollowListRetrieved(requestedToFollowList);
+                } else {
+                    // Handle the case where the requestedToFollowList node doesn't exist
+                    listener.onRequestedToFollowListNotFound();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                listener.onRequestedToFollowListRetrieveError(databaseError.getMessage());
+            }
+        });
+    }
+
+    // Define an interface for callback listeners
+    public interface OnRequestedToFollowListListener {
+        void onRequestedToFollowListRetrieved(List<String> requestedToFollowList);
+        void onRequestedToFollowListNotFound();
+        void onRequestedToFollowListRetrieveError(String errorMessage);
     }
 
 

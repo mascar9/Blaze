@@ -53,6 +53,8 @@ public class GlobalClass {
 
     public static User user = new User();
 
+    public static User anotherUser;
+
 
 
 
