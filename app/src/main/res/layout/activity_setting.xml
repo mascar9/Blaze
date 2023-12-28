@@ -14,10 +14,10 @@
         android:layout_marginTop="20dp"
         android:lineSpacingExtra="4dp"
         android:text="BLAZE"
+        android:fontFamily="@font/archivo_black_regular"
         android:textAlignment="center"
         android:textColor="@color/shiny_green"
         android:textSize="60sp"
-        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

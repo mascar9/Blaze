@@ -4,18 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_black"
+    android:background="@color/dark_black"
     tools:context=".fragments.ProfileFrag">
 
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Following"
+        android:textColor="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="@+id/followingTV"
+        app:layout_constraintStart_toStartOf="@+id/followingTV"
+        app:layout_constraintTop_toBottomOf="@+id/followingTV" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workouts"
+        android:textColor="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="@+id/workoutNrDisplay"
+        app:layout_constraintStart_toStartOf="@+id/workoutNrDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/workoutNrDisplay" />
 
     <TextView
         android:id="@+id/followersTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="88dp"
         android:layout_marginTop="36dp"
         android:padding="5dp"
-        android:text="Followers:\n24"
+        android:text="24"
+        android:fontFamily="@font/lato_regular"
         android:textAlignment="center"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
@@ -27,11 +48,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="27\nFollowing"
+        android:text="27"
+        android:fontFamily="@font/lato_regular"
         android:textAlignment="center"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/workoutNrDisplay"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toEndOf="@+id/followersTV"
         app:layout_constraintTop_toTopOf="@+id/followersTV" />
 
@@ -39,15 +62,17 @@
         android:id="@+id/workoutNrDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
+        android:layout_marginEnd="88dp"
         android:padding="5dp"
-        android:text="4\nWorkouts"
+        android:text="4"
+        android:fontFamily="@font/lato_regular"
         android:textAlignment="center"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/followingTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/followersTV" />
+        app:layout_constraintTop_toTopOf="@+id/followersTV"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/profileBtn"
@@ -70,8 +95,10 @@
         android:autoSizeMaxTextSize="24sp"
         android:autoSizeMinTextSize="12sp"
         android:autoSizeTextType="uniform"
+        android:fontFamily="@font/lato_regular"
         android:text="Pedro Mascarenhas"
         android:textColor="@color/apple_white"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/profileBtn"
         app:layout_constraintTop_toTopOf="@+id/profileBtn" />
 
@@ -79,25 +106,54 @@
         android:id="@+id/username_profile_et"
         android:layout_width="109dp"
         android:layout_height="27dp"
+        android:fontFamily="@font/lato_regular"
         android:autoSizeTextType="uniform"
-        android:text="\@Mascar9"
-        android:textColor="@color/shiny_green"
+        android:text="Mascar9"
+        android:textColor="@color/light_gray"
         app:layout_constraintStart_toStartOf="@+id/Name_tv"
         app:layout_constraintTop_toBottomOf="@+id/Name_tv" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/searchFriendButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginBottom="36dp"
-        android:background="@drawable/mid_gray_rounded_corners_border_v2"
+        android:background="@drawable/mid_gray_rounded_corners_border"
         android:paddingHorizontal="10dp"
         android:text="Search User"
+        android:fontFamily="@font/lato_regular"
         android:textColor="@color/light_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.27"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/userRequestsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/mid_gray_rounded_corners_border"
+        android:paddingHorizontal="10dp"
+        android:text="Requests"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="Followers"
+        android:textColor="@color/light_gray"
+        app:layout_constraintEnd_toEndOf="@+id/followersTV"
+        app:layout_constraintStart_toStartOf="@+id/followersTV"
+        app:layout_constraintTop_toBottomOf="@+id/followersTV" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

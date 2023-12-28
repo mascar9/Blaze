@@ -41,6 +41,8 @@
                 app:srcCompat="@drawable/app_icon_nobg" />
 
             <TextView
+                android:fontFamily="@font/lato_regular"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -68,6 +70,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_email"
                         android:layout_width="wrap_content"
+                        android:fontFamily="@font/lato_regular"
+
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
@@ -106,6 +110,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:fontFamily="@font/lato_regular"
+
                         android:background="@android:color/transparent"
                         android:drawableStart="@drawable/ic_lock"
                         android:drawableLeft="@drawable/ic_lock"
@@ -128,6 +134,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/light_gray"
+                android:fontFamily="@font/lato_regular"
+
                 android:onClick="onClick"
                 android:padding="10dp"
                 android:text="@string/text_forgot_password" />
@@ -139,38 +147,26 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_regular"
+
                 android:background="@drawable/mid_gray_rounded_corners_border"
                 android:text="@string/button_sign_in" />
 
-            <LinearLayout
-                android:id="@+id/social_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="@string/text_signin_social_media"
-                    android:textColor="@color/dark_black"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/button_signup"
-                android:layout_width="wrap_content"
+                android:layout_width="342dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/mid_gray_rounded_corners_border"
+                android:fontFamily="@font/lato_regular"
                 android:onClick="onClick"
                 android:padding="10dp"
                 android:text="@string/text_signin_signup"
+                android:layout_marginTop="20dp"
                 android:textAllCaps="false"
-                android:textColor="@color/background_black" />
+                android:textColor="@color/apple_white" />
         </LinearLayout>
 
     </RelativeLayout>

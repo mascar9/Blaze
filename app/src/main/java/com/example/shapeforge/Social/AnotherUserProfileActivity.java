@@ -115,11 +115,11 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
                     if (followersBools.get(k))
                         nrFollowers++;
                 }
-                followersDisplay.setText("Followers:\n" + nrFollowers);
-                followingDisplay.setText("Following:\n" +followers.size());
+                followersDisplay.setText("Followers\n" + nrFollowers);
+                followingDisplay.setText("Following\n" +followers.size());
             }else {
-                followersDisplay.setText("Followers:\n0");
-                followingDisplay.setText("Following:\n0");
+                followersDisplay.setText("Followers\n0");
+                followingDisplay.setText("Following\n0");
             }
 
             //nrWorkoutsDisplay.setText(user.getWorkoutList().size());

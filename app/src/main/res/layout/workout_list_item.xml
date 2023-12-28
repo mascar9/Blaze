@@ -18,11 +18,15 @@
         android:textColor="@color/apple_white"
         android:textSize="18sp"
         android:text="Workout Name"
+        android:fontFamily="@font/lato_regular"
+
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/workout_list_nrexercises"
         android:layout_width="match_parent"
+        android:fontFamily="@font/lato_regular"
+
         android:layout_height="wrap_content"
         android:layout_below="@id/workout_list_item_title"
         android:layout_marginBottom="20dp"
@@ -36,6 +40,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
+        android:fontFamily="@font/lato_regular"
+
         android:textColor="@color/light_gray"
         android:layout_below="@id/workout_list_nrexercises"
         android:textSize="12sp" />
@@ -45,6 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
+        android:fontFamily="@font/lato_regular"
+
         android:textColor="@color/light_gray"
         android:layout_below="@id/workout_exercise_1"
         android:textSize="12sp" />
@@ -54,6 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
+        android:fontFamily="@font/lato_regular"
+
         android:textColor="@color/light_gray"
         android:layout_below="@id/workout_exercise_2"
         android:textSize="12sp" />
@@ -62,6 +72,8 @@
         android:id="@+id/workout_exercise_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_regular"
+
         android:textColor="@color/light_gray"
         android:layout_below="@id/workout_exercise_3"
         android:layout_marginTop="4dp"
@@ -71,6 +83,8 @@
         android:id="@+id/workout_letter"
         android:layout_width="65dp"
         android:layout_height="65dp"
+        android:fontFamily="@font/lato_regular"
+
         android:paddingTop="10sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"

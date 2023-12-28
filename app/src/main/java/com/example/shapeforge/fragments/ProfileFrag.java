@@ -60,10 +60,10 @@ public class ProfileFrag extends Fragment {
         });
 
         nameWelcomeTV.setText(GlobalClass.user.getName());
-        usernameTV.setText(GlobalClass.user.getUsername());
+        usernameTV.setText("@" + GlobalClass.user.getUsername());
 
 
-        WorkoutsNrDisplay.setText(GlobalClass.workoutList.size() + "\nWorkouts");
+        WorkoutsNrDisplay.setText(GlobalClass.workoutList.size() + "");
         Map<String, Boolean> followers = GlobalClass.user.getFollowers();
 
         if(followers != null) {
@@ -72,11 +72,11 @@ public class ProfileFrag extends Fragment {
                 if (followersBools.get(k))
                     nrFollowers++;
             }
-            followersDisplay.setText(nrFollowers + "\nFollowers");
-            followingDisplay.setText(followers.size() + "\nFollowing");
+            followersDisplay.setText(nrFollowers);
+            followingDisplay.setText(followers.size());
         }else {
-            followersDisplay.setText("0\n Followers");
-            followingDisplay.setText("0\nFollowing");
+            followersDisplay.setText("0");
+            followingDisplay.setText("0");
         }
 
         seachFriendBtn.setOnClickListener(new View.OnClickListener() {

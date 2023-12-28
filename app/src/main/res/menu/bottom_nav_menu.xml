@@ -5,21 +5,30 @@
     <item
         android:id="@+id/destination_exercises"
         android:title="Exercises"
+        android:iconTint="@color/apple_white"
         android:icon="@drawable/list_icon" />
     <item
         android:id="@+id/destination_workout"
         android:title="Workouts"
+        android:iconTint="@color/apple_white"
+
         android:icon="@drawable/exercise_icon" />
     <item
         android:id="@+id/destination_home"
         android:title="Home"
+        android:iconTint="@color/apple_white"
+
         android:icon="@drawable/home_icon" />
     <item
         android:id="@+id/destination_badges"
         android:title="PR Calc"
+        android:iconTint="@color/apple_white"
+
         android:icon="@drawable/calc_ic" />
     <item
         android:id="@+id/destination_plan"
         android:title="Plans"
+        android:iconTint="@color/apple_white"
+
         android:icon="@drawable/event_icon" />
 </menu>

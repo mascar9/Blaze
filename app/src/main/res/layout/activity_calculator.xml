@@ -38,9 +38,9 @@
         android:id="@+id/weight_calculate_pr"
         android:layout_width="158dp"
         android:layout_height="57dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="64dp"
-        android:background="@drawable/mid_gray_rounded_corners_border_v2"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mid_gray_rounded_corners_border"
         android:ems="10"
         android:hint="Weight"
         android:inputType="numberDecimal"
@@ -54,18 +54,17 @@
         android:id="@+id/reps_calculate_pr"
         android:layout_width="158dp"
         android:layout_height="57dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/mid_gray_rounded_corners_border_v2"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mid_gray_rounded_corners_border"
         android:ems="10"
         android:hint="Reps"
         android:inputType="numberDecimal"
         android:paddingLeft="10dp"
         android:textColor="@color/apple_white"
         android:textColorHint="@color/light_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/weight_calculate_pr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/weight_calculate_pr"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight_calculate_pr" />
 
     <Button
         android:id="@+id/calculate_pr_btn"
@@ -75,7 +74,7 @@
         android:background="@drawable/mid_gray_rounded_corners"
         android:text="Calculate PR"
         android:textAllCaps="false"
-        android:textColor="@color/background_black"
+        android:textColor="@color/apple_white"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,8 +85,8 @@
         android:layout_width="336dp"
         android:layout_height="104dp"
         android:layout_marginTop="48dp"
-        android:text="Calculate your 1RM utilizing the weight and respective reps of a compound lift, for example 100 kilograms for 5 reps on bench press"
-        android:textAlignment="center"
+        android:text="Calculate your 1RM utilizing the weight and respective reps of a compound lift.\nFor example 100 kilograms for 5 reps on bench press"
+        android:textAlignment="viewStart"
         android:textColor="@color/apple_white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,12 +97,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="263dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/mid_gray_rounded_corners_border_v2"
+        android:layout_width="195dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/mid_gray_rounded_corners_border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.171"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
@@ -111,13 +110,10 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="16dp"
             android:text="Pounds"
-            android:layout_marginEnd="10dp"
             android:textColor="@color/apple_white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/weight_metrics_pr"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -127,21 +123,20 @@
             android:layout_height="wrap_content"
 
             app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
+            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintVertical_bias="0.47" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:text="Kilograms"
-            android:layout_marginStart="10dp"
             android:textColor="@color/apple_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/weight_metrics_pr"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -149,17 +144,18 @@
         android:id="@+id/result_pr"
         android:layout_width="212dp"
         android:layout_height="41dp"
-        android:background="@drawable/mid_gray_rounded_corners"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mid_gray_rounded_corners_border_v2"
         android:padding="10dp"
         android:text="1RM is 100kg"
-        android:visibility="invisible"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/calculate_pr_btn"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weight_calculate_pr" />
+        app:layout_constraintTop_toBottomOf="@+id/reps_calculate_pr" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

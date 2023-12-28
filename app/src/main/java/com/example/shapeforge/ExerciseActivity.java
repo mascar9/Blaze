@@ -91,7 +91,11 @@ public class ExerciseActivity extends AppCompatActivity {
         }
 
 
-        getTextViewExerciseDescription.setText(exercise.getDescription());
+        String exerciseDesc = exercise.getDescription();
+
+        String resultString = exerciseDesc.replaceAll("\\.", ".\n");
+
+        getTextViewExerciseDescription.setText(resultString);
 
         textViewExercise.setText(exerciseName);
 

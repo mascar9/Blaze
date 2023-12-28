@@ -16,6 +16,8 @@
     <TextView
         android:id="@+id/tvWorkoutName"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/lato_regular"
+
         android:layout_height="wrap_content"
         android:textColor="@color/apple_white"
         android:textSize="16sp"

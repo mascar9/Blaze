@@ -59,7 +59,7 @@
         android:hint="Search..."
         android:paddingLeft="10dp"
         android:textColor="@color/apple_white"
-        android:textColorHint="@color/apple_white"
+        android:textColorHint="@color/light_gray"
         app:layout_constraintEnd_toStartOf="@+id/filter_exercises_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background_black"
+    android:background="@color/dark_black"
     android:layout_height="match_parent"
     tools:context=".CalculatorActivity">
 
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="0 / 26"
+        android:fontFamily="@font/lato_regular"
         android:textColor="@color/shiny_green"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
