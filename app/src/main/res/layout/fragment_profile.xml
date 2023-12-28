@@ -32,16 +32,17 @@
         android:id="@+id/followersTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="164dp"
+        android:fontFamily="@font/lato_regular"
         android:padding="5dp"
         android:text="24"
-        android:fontFamily="@font/lato_regular"
         android:textAlignment="center"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/profileBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_profile_et" />
+        app:layout_constraintTop_toTopOf="@+id/profileBtn"
+        app:layout_constraintVertical_bias="0.232" />
 
     <TextView
         android:id="@+id/followingTV"
@@ -58,14 +59,15 @@
         app:layout_constraintStart_toEndOf="@+id/followersTV"
         app:layout_constraintTop_toTopOf="@+id/followersTV" />
 
+
     <TextView
         android:id="@+id/workoutNrDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="72dp"
+        android:fontFamily="@font/lato_regular"
         android:padding="5dp"
         android:text="4"
-        android:fontFamily="@font/lato_regular"
         android:textAlignment="center"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
@@ -78,20 +80,21 @@
         android:id="@+id/profileBtn"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
         android:adjustViewBounds="true"
         android:background="@drawable/mid_gray_circle_border_v2"
         android:scaleType="fitCenter"
         android:src="@drawable/app_icon_nobg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/username_profile_et" />
 
     <TextView
         android:id="@+id/Name_tv"
-        android:layout_width="234dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="207dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:autoSizeMaxTextSize="24sp"
         android:autoSizeMinTextSize="12sp"
         android:autoSizeTextType="uniform"
@@ -99,50 +102,44 @@
         android:text="Pedro Mascarenhas"
         android:textColor="@color/apple_white"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/profileBtn"
-        app:layout_constraintTop_toTopOf="@+id/profileBtn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/username_profile_et"
-        android:layout_width="109dp"
-        android:layout_height="27dp"
-        android:fontFamily="@font/lato_regular"
+        android:layout_width="209dp"
+        android:layout_height="20dp"
         android:autoSizeTextType="uniform"
+        android:fontFamily="@font/lato_regular"
         android:text="Mascar9"
         android:textColor="@color/light_gray"
         app:layout_constraintStart_toStartOf="@+id/Name_tv"
         app:layout_constraintTop_toBottomOf="@+id/Name_tv" />
 
-
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageButton
         android:id="@+id/searchFriendButton"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="36dp"
-        android:background="@drawable/mid_gray_rounded_corners_border"
-        android:paddingHorizontal="10dp"
-        android:text="Search User"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
         android:fontFamily="@font/lato_regular"
+        android:src="@drawable/search_ic"
         android:textColor="@color/light_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.27"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/userRequestsButton"
+        app:layout_constraintEnd_toStartOf="@+id/userRequestsButton"
+        app:layout_constraintTop_toTopOf="@+id/userRequestsButton"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageButton
         android:id="@+id/userRequestsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="36dp"
-        android:background="@drawable/mid_gray_rounded_corners_border"
-        android:paddingHorizontal="10dp"
-        android:text="Requests"
-        android:fontFamily="@font/lato_regular"
-        android:textColor="@color/light_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="28dp"
+        android:background="@null"
+        android:src="@drawable/heart_ic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.726"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"

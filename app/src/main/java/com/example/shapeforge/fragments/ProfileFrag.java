@@ -37,7 +37,7 @@ public class ProfileFrag extends Fragment {
 
         TextView nameWelcomeTV, usernameTV, followersDisplay, followingDisplay, WorkoutsNrDisplay;
         ImageButton profileButton;
-        AppCompatButton seachFriendBtn;
+        ImageButton seachFriendBtn;
         int nrFollowers = 0;
 
         nameWelcomeTV = rootView.findViewById(R.id.Name_tv);
