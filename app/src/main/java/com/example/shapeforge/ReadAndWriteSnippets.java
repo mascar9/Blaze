@@ -221,7 +221,7 @@ public class ReadAndWriteSnippets {
     }
 
     public void updatePRsForUser(String userId, Map<String, Long> PRs, final OnPRsUpdateListener listener) {
-        DatabaseReference userRef = mDatabase.child("users").child(userId).child("PRs");
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("prs");
 
         userRef.setValue(PRs)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -239,7 +239,7 @@ public class ReadAndWriteSnippets {
     }
 
     public void getPRsForUser(String userId, final OnPRsRetrieveListener listener) {
-        DatabaseReference userRef = mDatabase.child("users").child(userId).child("PRs");
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("prs");
 
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -619,6 +619,36 @@ public class ReadAndWriteSnippets {
         void onRequestedToFollowListRetrieved(List<String> requestedToFollowList);
         void onRequestedToFollowListNotFound();
         void onRequestedToFollowListRetrieveError(String errorMessage);
+    }
+
+    public void getUserIdByUsername(String username, final OnUserIdRetrieveListener listener) {
+        DatabaseReference usersRef = mDatabase.child("users");
+
+        usersRef.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                        String userId = userSnapshot.getKey();
+                        listener.onUserIdRetrieved(userId);
+                        return;  // Stop iterating after finding the first match
+                    }
+                }
+                // If no match found
+                listener.onUserIdNotFound();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                listener.onUserIdRetrieveError(databaseError.getMessage());
+            }
+        });
+    }
+
+    public interface OnUserIdRetrieveListener {
+        void onUserIdRetrieved(String userId);
+        void onUserIdNotFound();
+        void onUserIdRetrieveError(String error);
     }
 
 

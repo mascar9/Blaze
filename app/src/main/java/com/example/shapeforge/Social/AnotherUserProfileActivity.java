@@ -5,10 +5,10 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.shapeforge.GlobalClass;
 import com.example.shapeforge.R;
@@ -25,6 +25,8 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
     private TextView nameWelcomeTV, usernameTV, followersDisplay, followingDisplay, nrWorkoutsDisplay;
 
     private String userID;
+    private String anotherUserUsername;
+
     private String anotherUserID;
 
     private FirebaseDatabase database;
@@ -50,7 +52,7 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             userID = intent.getStringExtra("userID");
-            anotherUserID = intent.getStringExtra("anotherUserID");
+            anotherUserUsername = intent.getStringExtra("anotherUserID");
 
             // Now you have the values of userID and anotherUserID
             // Use them as needed in your activity
@@ -68,34 +70,58 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
         followersDisplay = findViewById(R.id.followersTV);
         followingDisplay = findViewById(R.id.followingTV);
         nrWorkoutsDisplay = findViewById(R.id.workoutNrDisplay);
-        exit = findViewById(R.id.exitAUPButton);
+        exit = findViewById(R.id.exitNotificationsButton);
 
-
-        snippets.getRequestedToFollowList(userID, new ReadAndWriteSnippets.OnRequestedToFollowListListener() {
+        snippets.getUserIdByUsername(anotherUserUsername, new ReadAndWriteSnippets.OnUserIdRetrieveListener() {
             @Override
-            public void onRequestedToFollowListRetrieved(List<String> requestedToFollowList) {
-                if(requestedToFollowList == null){
-                    requests = new ArrayList<>();
-                }else {
-                    requests = requestedToFollowList;
-                    if (requests.contains(anotherUserID)) {
-                        addFriendBtn.setText("Request sent");
-                        addFriendBtn.setTextColor(getResources().getColor(R.color.light_gray));
+            public void onUserIdRetrieved(String userId) {
+                // Handle the user ID retrieval
+                anotherUserID = userId;
+
+                snippets.getRequestedToFollowList(anotherUserID, new ReadAndWriteSnippets.OnRequestedToFollowListListener() {
+                    @Override
+                    public void onRequestedToFollowListRetrieved(List<String> requestedToFollowList) {
+                        if(requestedToFollowList == null){
+                            requests = new ArrayList<>();
+                        }else {
+                            requests = requestedToFollowList;
+                            if (requests.contains(GlobalClass.user.getUsername())) {
+                                addFriendBtn.setText("Request sent");
+                                addFriendBtn.setTextColor(getResources().getColor(R.color.light_gray));
+                            }
+                        }
                     }
-                }
+
+                    @Override
+                    public void onRequestedToFollowListNotFound() {
+                        // Handle the case where requestedToFollowList is not found
+                        requests = new ArrayList<>();            }
+
+                    @Override
+                    public void onRequestedToFollowListRetrieveError(String errorMessage) {
+                        // Handle the error in retrieving requestedToFollowList
+                        requests = new ArrayList<>();
+                    }
+                });
             }
 
             @Override
-            public void onRequestedToFollowListNotFound() {
-                // Handle the case where requestedToFollowList is not found
-                requests = new ArrayList<>();            }
+            public void onUserIdNotFound() {
+                // Handle the case where no user with the given username was found
+                Log.d("UserId", "User not found");
+            }
 
             @Override
-            public void onRequestedToFollowListRetrieveError(String errorMessage) {
-                // Handle the error in retrieving requestedToFollowList
-                requests = new ArrayList<>();
+            public void onUserIdRetrieveError(String error) {
+                // Handle the error case
+                Log.e("UserId", "Error retrieving user ID: " + error);
             }
         });
+
+
+
+
+
 
 
 
@@ -104,8 +130,6 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
             user = GlobalClass.anotherUser;
             nameWelcomeTV.setText(user.getName());
             usernameTV.setText(user.getUsername());
-
-
 
             Map<String, Boolean> followers = user.getFollowers();
 
@@ -126,19 +150,20 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
 
         }
 
+
         addFriendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!requests.contains(anotherUserID)) {
+                if(!requests.contains(GlobalClass.user.getUsername())) {
                     addFriendBtn.setText("Request sent");
                     addFriendBtn.setTextColor(getResources().getColor(R.color.light_gray));
-                    requests.add(anotherUserID);
-                    snippets.updateRequestedToFollowList(userID, requests);
+                    requests.add(GlobalClass.user.getUsername());
+                    snippets.updateRequestedToFollowList(anotherUserID, requests);
                 }else{
                     addFriendBtn.setText("Follow");
                     addFriendBtn.setTextColor(getResources().getColor(R.color.apple_white));
-                    requests.remove(anotherUserID);
-                    snippets.updateRequestedToFollowList(userID, requests);
+                    requests.remove(GlobalClass.user.getUsername());
+                    snippets.updateRequestedToFollowList(anotherUserID, requests);
                 }
             }
         });

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/dark_black"
+    android:paddingVertical="15dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/app_icon_nobg" />
+
+    <TextView
+        android:id="@+id/userUsernameDisplay"
+        android:layout_width="162dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="12dp"
+
+        android:text="John, has requested to follow you."
+        android:textColor="@color/apple_white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/deleteRequestButton"
+        android:layout_width="70dp"
+        android:layout_height="32dp"
+        android:background="@drawable/mid_gray_rounded_corners"
+        android:backgroundTint="@color/mid_black"
+        android:text="Delete"
+        android:textColor="@color/apple_white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/acceptRequestButton"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/acceptRequestButton"
+        android:layout_width="70dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/mid_gray_rounded_corners"
+        android:backgroundTint="@color/shiny_green"
+        android:text="Confirm"
+        android:textColor="@color/apple_white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/userUsernameDisplay"
+        app:layout_constraintStart_toEndOf="@+id/userUsernameDisplay"
+        app:layout_constraintTop_toTopOf="@+id/userUsernameDisplay" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

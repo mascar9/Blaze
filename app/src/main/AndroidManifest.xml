@@ -12,6 +12,12 @@
         android:theme="@style/Theme.ShapeForge"
         tools:targetApi="31">
         <activity
+            android:name=".Social.FollowsFollowingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Social.NotificationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Social.AnotherUserProfileActivity"
             android:exported="false" />
         <activity

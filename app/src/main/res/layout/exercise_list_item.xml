@@ -21,7 +21,6 @@
         android:textColor="@color/apple_white"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:fontFamily="@font/lato_regular"
 
         android:text="hello"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +32,6 @@
         android:layout_height="wrap_content"
         android:text="Hi, this is the description or sum"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/lato_regular"
 
         android:textColor="@color/light_gray"
         android:layout_marginStart="4dp"

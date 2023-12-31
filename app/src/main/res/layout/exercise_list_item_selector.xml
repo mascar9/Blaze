@@ -27,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bench Press"
-            android:fontFamily="@font/lato_regular"
 
             android:textColor="@color/apple_white"
             android:textSize="18sp"
@@ -36,7 +35,6 @@
         <TextView
             android:id="@+id/exercise_list_item_desc"
             android:layout_width="match_parent"
-            android:fontFamily="@font/lato_regular"
 
             android:layout_height="wrap_content"
             android:text="Hi, this is the description or sum"

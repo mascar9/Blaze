@@ -18,7 +18,11 @@ import android.widget.TextView;
 
 import com.example.shapeforge.GlobalClass;
 import com.example.shapeforge.R;
+import com.example.shapeforge.ReadAndWriteSnippets;
+import com.example.shapeforge.Social.FollowsFollowingActivity;
+import com.example.shapeforge.Social.NotificationsActivity;
 import com.example.shapeforge.Social.SearchFriendsActivity;
+import com.example.shapeforge.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +41,7 @@ public class ProfileFrag extends Fragment {
 
         TextView nameWelcomeTV, usernameTV, followersDisplay, followingDisplay, WorkoutsNrDisplay;
         ImageButton profileButton;
-        ImageButton seachFriendBtn;
+        ImageButton seachFriendBtn, notificationsBtn;
         int nrFollowers = 0;
 
         nameWelcomeTV = rootView.findViewById(R.id.Name_tv);
@@ -47,7 +51,7 @@ public class ProfileFrag extends Fragment {
         seachFriendBtn = rootView.findViewById(R.id.searchFriendButton);
         followersDisplay = rootView.findViewById(R.id.followersTV);
         followingDisplay = rootView.findViewById(R.id.followingTV);
-
+        notificationsBtn = rootView.findViewById(R.id.userRequestsButton);
 
         pickMedia = registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
             // Callback logic here
@@ -58,7 +62,7 @@ public class ProfileFrag extends Fragment {
                 Log.d("PhotoPicker", "No media selected");
             }
         });
-
+        /*
         nameWelcomeTV.setText(GlobalClass.user.getName());
         usernameTV.setText("@" + GlobalClass.user.getUsername());
 
@@ -79,6 +83,62 @@ public class ProfileFrag extends Fragment {
             followingDisplay.setText("0");
         }
 
+         */
+
+        followersDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchFriendIntent = new Intent(getContext(), FollowsFollowingActivity.class);
+                startActivity(searchFriendIntent);
+            }
+        });
+
+        followingDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchFriendIntent = new Intent(getContext(), FollowsFollowingActivity.class);
+                startActivity(searchFriendIntent);
+            }
+        });
+
+
+        GlobalClass.snippets.getUser(GlobalClass.userID, new ReadAndWriteSnippets.OnUserRetrieveListener() {
+            @Override
+            public void onUserRetrieved(User user) {
+                nameWelcomeTV.setText(user.getName());
+                usernameTV.setText("@" + user.getUsername());
+
+
+                WorkoutsNrDisplay.setText(user.getWorkoutList().size() + "");
+                Map<String, Boolean> followers = user.getFollowers();
+
+                int nrFollowers = 0;
+
+                if(followers != null) {
+                    List<Boolean> followersBools = new ArrayList<>(followers.values());
+                    for (int k = 0; k < followersBools.size(); k++) {
+                        if (followersBools.get(k))
+                            nrFollowers++;
+                    }
+                    followersDisplay.setText(nrFollowers);
+                    followingDisplay.setText(followers.size());
+                }else {
+                    followersDisplay.setText("0");
+                    followingDisplay.setText("0");
+                }
+            }
+
+            @Override
+            public void onUserNotFound() {
+                // Handle the scenario where the user is not found
+            }
+
+            @Override
+            public void onUserRetrieveError(String error) {
+                // Handle the error scenario
+            }
+        });
+
         seachFriendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +146,15 @@ public class ProfileFrag extends Fragment {
                 startActivity(searchFriendIntent);
             }
         });
+
+        notificationsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent notificationsIntent = new Intent(getContext(), NotificationsActivity.class);
+                startActivity(notificationsIntent);
+            }
+        });
+
 
 
         profileButton.setOnClickListener(new View.OnClickListener() {

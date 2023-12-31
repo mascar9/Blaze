@@ -10,7 +10,6 @@
         android:id="@+id/dialogBadgeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lato_regular"
 
         android:textSize="18sp"
         android:textStyle="bold"
@@ -19,7 +18,6 @@
 
     <TextView
         android:id="@+id/dialogBadgeDescription"
-        android:fontFamily="@font/lato_regular"
 
         android:layout_width="wrap_content"
         android:textColor="@color/apple_white"

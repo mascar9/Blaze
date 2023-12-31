@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
+        GlobalClass.userID = user.getUid();
+
 
 
         if( user == null){
@@ -85,8 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance("https://shape-forge-default-rtdb.europe-west1.firebasedatabase.app");
         reference = database.getReference();
-
         snippets = new ReadAndWriteSnippets(reference);
+
+        GlobalClass.database = database;
+        GlobalClass.reference = reference;
+        GlobalClass.snippets = snippets;
 
 
         /*

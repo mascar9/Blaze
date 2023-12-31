@@ -21,7 +21,6 @@
         android:layout_width="330dp"
         android:layout_height="19dp"
         android:layout_marginStart="12dp"
-        android:fontFamily="@font/lato_regular"
         android:text="\@Mascar9"
 
         android:textColor="@color/apple_white"
@@ -36,7 +35,6 @@
         android:layout_height="wrap_content"
 
         android:layout_marginStart="12dp"
-        android:fontFamily="@font/lato_regular"
         android:text="Pedro Mascarenhas"
         android:textColor="@color/light_gray"
         android:textSize="14sp"

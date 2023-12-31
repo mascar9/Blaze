@@ -87,7 +87,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             GlobalClass.anotherUser = user;
             Intent AnotherUserIntent = new Intent(context, AnotherUserProfileActivity.class);
             AnotherUserIntent.putExtra("userID", userID);
-            AnotherUserIntent.putExtra("anotherUserID", user.getName());
+            AnotherUserIntent.putExtra("anotherUserID", user.getUsername());
             AnotherUserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(AnotherUserIntent);
         }

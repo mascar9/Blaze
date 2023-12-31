@@ -81,14 +81,42 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         }
 
-        Map<String, Long> PRs = GlobalClass.PRs;
+        snippets.getPRsForUser(GlobalClass.userID, new ReadAndWriteSnippets.OnPRsRetrieveListener() {
 
-        if(PRs.containsKey(exerciseName)){
-            prET.setText(PRs.get(exerciseName) + "");
-            Log.d("PRs", PRs.get(exerciseName)+"");
-        }else{
-            prET.setText("0");
-        }
+            @Override
+            public void onPRsRetrieved(Map<String, Long> PRs) {
+
+                if(PRs.containsKey(exerciseName)){
+                    prET.setText(PRs.get(exerciseName) + "");
+                    Log.d("PRs", PRs.get(exerciseName)+"");
+                }else{
+                    prET.setText("0");
+                    Log.d("PRs",PRs.size() + "DB PR Size");
+
+                }
+            }
+
+            @Override
+            public void onPRsNotFound() {
+                // No PRs found for the user
+                // Handle this case
+                Log.d("PRs","PR not found");
+            }
+
+            @Override
+            public void onUserNotFound() {
+                // User not found
+                // Handle this case
+                Log.d("PRs","user not found" + GlobalClass.userID);
+            }
+
+            @Override
+            public void onPRsError(String error) {
+                // Handle error case
+            }
+        });
+
+
 
 
         String exerciseDesc = exercise.getDescription();

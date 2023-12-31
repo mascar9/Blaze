@@ -55,6 +55,14 @@ public class GlobalClass {
 
     public static User anotherUser;
 
+    public static FirebaseDatabase database;
+    public static DatabaseReference reference;
+
+    public static ReadAndWriteSnippets snippets;
+
+    public static String userID;
+
+
 
 
 

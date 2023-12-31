@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.shapeforge.GlobalClass;
 import com.example.shapeforge.MainActivity;
 import com.example.shapeforge.R;
 import com.example.shapeforge.ReadAndWriteSnippets;
@@ -78,6 +79,7 @@ public class SearchFriendsActivity extends AppCompatActivity {
                 snippets.searchUsers(query, new ReadAndWriteSnippets.OnUserSearchListener() {
                     @Override
                     public void onUserSearchResult(List<User> userList) {
+
 
                         UserAdapter userAdapter = new UserAdapter(userList, snippets.getUserID(), getApplicationContext());
                         usersRV.setAdapter(userAdapter);

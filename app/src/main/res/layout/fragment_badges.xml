@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="0 / 26"
-        android:fontFamily="@font/lato_regular"
         android:textColor="@color/shiny_green"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -63,10 +63,10 @@
         android:scaleType="fitCenter"
         android:src="@drawable/app_icon_nobg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exitAUPButton" />
+        app:layout_constraintTop_toBottomOf="@+id/exitNotificationsButton" />
 
     <ImageButton
-        android:id="@+id/exitAUPButton"
+        android:id="@+id/exitNotificationsButton"
         android:layout_width="26dp"
         android:layout_height="26dp"
         android:layout_marginStart="16dp"
@@ -104,7 +104,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.288"
-        app:layout_constraintStart_toEndOf="@+id/exitAUPButton"
+        app:layout_constraintStart_toEndOf="@+id/exitNotificationsButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton

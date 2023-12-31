@@ -62,7 +62,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_signup_message"
-                    android:fontFamily="@font/lato_regular"
 
                     android:textColor="@color/shiny_green"
                     android:textSize="16sp"
@@ -90,7 +89,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="12dp"
-                            android:fontFamily="@font/lato_regular"
 
                             android:textColorHint="@color/light_gray"
                             android:textColor="@color/apple_white"
@@ -128,7 +126,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:fontFamily="@font/lato_regular"
 
                             android:layout_marginLeft="12dp"
                             android:textColorHint="@color/light_gray"
@@ -168,7 +165,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="12dp"
-                            android:fontFamily="@font/lato_regular"
 
                             android:textColorHint="@color/light_gray"
                             android:textColor="@color/apple_white"
@@ -209,7 +205,6 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
-                            android:fontFamily="@font/lato_regular"
 
                             android:background="@android:color/transparent"
                             android:drawableStart="@drawable/ic_lock"
@@ -248,7 +243,6 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
-                            android:fontFamily="@font/lato_regular"
 
                             android:background="@android:color/transparent"
                             android:drawableStart="@drawable/ic_lock"
@@ -272,7 +266,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/lato_regular"
 
                     android:text="@string/button_sign_up" />
 
@@ -285,7 +278,6 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="13sp"
-                    android:fontFamily="@font/lato_regular"
 
                     android:padding="8dp"
                     android:textColor="@color/light_gray"
