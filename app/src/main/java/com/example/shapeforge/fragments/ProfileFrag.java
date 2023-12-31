@@ -23,6 +23,7 @@ import com.example.shapeforge.Social.FollowsFollowingActivity;
 import com.example.shapeforge.Social.NotificationsActivity;
 import com.example.shapeforge.Social.SearchFriendsActivity;
 import com.example.shapeforge.User;
+import com.example.shapeforge.UserFollowersAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,6 +103,30 @@ public class ProfileFrag extends Fragment {
         });
 
 
+        GlobalClass.snippets.getFollowers(GlobalClass.userID, new ReadAndWriteSnippets.OnFollowersRetrieveListener() {
+            @Override
+            public void onFollowersRetrieved(List<String> followers) {
+                followersDisplay.setText(followers.size()+"");
+
+            }
+
+            @Override
+            public void onFollowersNotFound() {
+                followingDisplay.setText("0");
+            }
+
+            @Override
+            public void onUserNotFound() {
+                followingDisplay.setText("0");
+            }
+
+            @Override
+            public void onFollowersError(String error) {
+                followingDisplay.setText("0");
+            }
+        });
+
+
         GlobalClass.snippets.getUser(GlobalClass.userID, new ReadAndWriteSnippets.OnUserRetrieveListener() {
             @Override
             public void onUserRetrieved(User user) {
@@ -110,22 +135,8 @@ public class ProfileFrag extends Fragment {
 
 
                 WorkoutsNrDisplay.setText(user.getWorkoutList().size() + "");
-                Map<String, Boolean> followers = user.getFollowers();
 
-                int nrFollowers = 0;
-
-                if(followers != null) {
-                    List<Boolean> followersBools = new ArrayList<>(followers.values());
-                    for (int k = 0; k < followersBools.size(); k++) {
-                        if (followersBools.get(k))
-                            nrFollowers++;
-                    }
-                    followersDisplay.setText(nrFollowers);
-                    followingDisplay.setText(followers.size());
-                }else {
-                    followersDisplay.setText("0");
-                    followingDisplay.setText("0");
-                }
+                followingDisplay.setText("0");
             }
 
             @Override

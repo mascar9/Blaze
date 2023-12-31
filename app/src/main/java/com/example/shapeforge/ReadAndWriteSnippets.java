@@ -537,39 +537,6 @@ public class ReadAndWriteSnippets {
         void onFriendsPostsError(String error);
     }
 
-    public void addFriend(String userId, String friendUserId, final OnFriendOperationListener listener) {
-        DatabaseReference userRef = mDatabase.child("users").child(userId).child("friendsList").child(friendUserId);
-        userRef.setValue(true)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        listener.onFriendOperationSuccess();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        listener.onFriendOperationError(e.getMessage());
-                    }
-                });
-    }
-
-    public void removeFriend(String userId, String friendUserId, final OnFriendOperationListener listener) {
-        DatabaseReference userRef = mDatabase.child("users").child(userId).child("friendsList").child(friendUserId);
-        userRef.removeValue()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        listener.onFriendOperationSuccess();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        listener.onFriendOperationError(e.getMessage());
-                    }
-                });
-    }
 
     public interface OnFriendOperationListener {
         void onFriendOperationSuccess();
@@ -649,6 +616,61 @@ public class ReadAndWriteSnippets {
         void onUserIdRetrieved(String userId);
         void onUserIdNotFound();
         void onUserIdRetrieveError(String error);
+    }
+
+    public void updateFollowers(String userId, List<String> followers, final OnFollowersUpdateListener listener) {
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("followers");
+
+        userRef.setValue(followers)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        listener.onFollowersUpdateSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onFollowersUpdateError(e.getMessage());
+                    }
+                });
+    }
+
+    public void getFollowers(String userId, final OnFollowersRetrieveListener listener) {
+        DatabaseReference userRef = mDatabase.child("users").child(userId).child("followers");
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    List<String> followers = (List<String>) dataSnapshot.getValue();
+                    if (followers != null) {
+                        listener.onFollowersRetrieved(followers);
+                    } else {
+                        listener.onFollowersNotFound();
+                    }
+                } else {
+                    listener.onUserNotFound();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                listener.onFollowersError(databaseError.getMessage());
+            }
+        });
+    }
+
+    public interface OnFollowersUpdateListener {
+        void onFollowersUpdateSuccess();
+        void onFollowersUpdateError(String error);
+    }
+
+    public interface OnFollowersRetrieveListener {
+        void onFollowersRetrieved(List<String> followers);
+        void onFollowersNotFound();
+        void onUserNotFound();
+        void onFollowersError(String error);
     }
 
 

@@ -14,6 +14,7 @@ import com.example.shapeforge.GlobalClass;
 import com.example.shapeforge.R;
 import com.example.shapeforge.ReadAndWriteSnippets;
 import com.example.shapeforge.User;
+import com.example.shapeforge.UserFollowersAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -44,6 +45,8 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
 
     private List<String> requests;
 
+    private List<String> userFollowers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,9 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
         followingDisplay = findViewById(R.id.followingTV);
         nrWorkoutsDisplay = findViewById(R.id.workoutNrDisplay);
         exit = findViewById(R.id.exitNotificationsButton);
+
+        requests = new ArrayList<>();
+        userFollowers = new ArrayList<>();
 
         snippets.getUserIdByUsername(anotherUserUsername, new ReadAndWriteSnippets.OnUserIdRetrieveListener() {
             @Override
@@ -103,6 +109,35 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
                         requests = new ArrayList<>();
                     }
                 });
+
+
+                //TODO trocar isto por getFollowing, nao getFollowers. Seu otario do crlh
+                GlobalClass.snippets.getFollowers(GlobalClass.userID, new ReadAndWriteSnippets.OnFollowersRetrieveListener() {
+                    @Override
+                    public void onFollowersRetrieved(List<String> followers) {
+                        userFollowers = followers;
+
+                        if (followers.contains(anotherUserUsername)){
+                            addFriendBtn.setText("Following");
+                        }
+                    }
+
+                    @Override
+                    public void onFollowersNotFound() {
+                        // Handle the case where no followers are found
+                        userFollowers = new ArrayList<>();
+                    }
+
+                    @Override
+                    public void onUserNotFound() {
+                        userFollowers = new ArrayList<>();
+                    }
+
+                    @Override
+                    public void onFollowersError(String error) {
+                        // Handle the error case when retrieving followers fails
+                    }
+                });
             }
 
             @Override
@@ -131,21 +166,9 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
             nameWelcomeTV.setText(user.getName());
             usernameTV.setText(user.getUsername());
 
-            Map<String, Boolean> followers = user.getFollowers();
 
-            if(followers != null) {
-                List<Boolean> followersBools = new ArrayList<>(followers.values());
-                for (int k = 0; k < followersBools.size(); k++) {
-                    if (followersBools.get(k))
-                        nrFollowers++;
-                }
-                followersDisplay.setText("Followers\n" + nrFollowers);
-                followingDisplay.setText("Following\n" +followers.size());
-            }else {
-                followersDisplay.setText("Followers\n0");
-                followingDisplay.setText("Following\n0");
-            }
-
+            followersDisplay.setText("Followers\n0");
+            followingDisplay.setText("Following\n0");
             //nrWorkoutsDisplay.setText(user.getWorkoutList().size());
 
         }
@@ -159,7 +182,26 @@ public class AnotherUserProfileActivity extends AppCompatActivity {
                     addFriendBtn.setTextColor(getResources().getColor(R.color.light_gray));
                     requests.add(GlobalClass.user.getUsername());
                     snippets.updateRequestedToFollowList(anotherUserID, requests);
-                }else{
+                }
+                /*
+                else if(userFollowers.contains(anotherUserUsername)){
+                    addFriendBtn.setText("Follow");
+                    addFriendBtn.setTextColor(getResources().getColor(R.color.apple_white));
+                    userFollowers.remove(anotherUserUsername);
+                    GlobalClass.snippets.updateFollowers(GlobalClass.userID, userFollowers, new ReadAndWriteSnippets.OnFollowersUpdateListener() {
+                        @Override
+                        public void onFollowersUpdateSuccess() {
+
+                        }
+
+                        @Override
+                        public void onFollowersUpdateError(String error) {
+                        }
+                    });
+                }
+
+                 */
+                else{
                     addFriendBtn.setText("Follow");
                     addFriendBtn.setTextColor(getResources().getColor(R.color.apple_white));
                     requests.remove(GlobalClass.user.getUsername());

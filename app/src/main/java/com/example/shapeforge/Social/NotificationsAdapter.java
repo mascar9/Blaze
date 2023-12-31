@@ -1,5 +1,6 @@
 package com.example.shapeforge.Social;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,84 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
         holder.deleteRequestBtn.setOnClickListener(v -> onDeleteButtonClick(position, request));
 
+        holder.acceptRequestBtn.setOnClickListener(v -> onAcceptButtonClick(position, request));
+
+
+    }
+
+    private void onAcceptButtonClick(int position, String request) {
+        Log.d("hereeee", "I was clicked");
+
+        followRequests.remove(request);
+        notifyItemRemoved(position);
+        GlobalClass.snippets.updateRequestedToFollowList(GlobalClass.userID, followRequests);
+
+        GlobalClass.snippets.getFollowers(GlobalClass.userID, new ReadAndWriteSnippets.OnFollowersRetrieveListener() {
+            @Override
+            public void onFollowersRetrieved(List<String> followers) {
+                    followers.add(request);
+                    GlobalClass.snippets.updateFollowers(GlobalClass.userID, followers, new ReadAndWriteSnippets.OnFollowersUpdateListener() {
+                        @Override
+                        public void onFollowersUpdateSuccess() {
+                            Log.d("hereeee", "Sucess");
+
+                        }
+
+                        @Override
+                        public void onFollowersUpdateError(String error) {
+                            Log.d("hereeee", error);
+
+                        }
+                    });
+            }
+
+            @Override
+            public void onFollowersNotFound() {
+
+                Log.d("hereeee", "NotFound");
+
+
+                    List<String> newFollowersList = new ArrayList<>();
+                    newFollowersList.add(request);
+                    GlobalClass.snippets.updateFollowers(GlobalClass.userID, newFollowersList, new ReadAndWriteSnippets.OnFollowersUpdateListener() {
+                        @Override
+                        public void onFollowersUpdateSuccess() {
+                            Log.d("hereeee", "GoodUpdate");
+
+                        }
+
+                        @Override
+                        public void onFollowersUpdateError(String error) {
+                            Log.d("hereeee", error);
+                        }
+                    });
+            }
+
+
+            @Override
+            public void onUserNotFound() {
+                Log.d("hereeee", "userNotFound");
+                List<String> newFollowersList = new ArrayList<>();
+                newFollowersList.add(request);
+                GlobalClass.snippets.updateFollowers(GlobalClass.userID, newFollowersList, new ReadAndWriteSnippets.OnFollowersUpdateListener() {
+                    @Override
+                    public void onFollowersUpdateSuccess() {
+                        Log.d("hereeee", "GoodUpdate");
+
+                    }
+
+                    @Override
+                    public void onFollowersUpdateError(String error) {
+                        Log.d("hereeee", error);
+                    }
+                });
+            }
+
+            @Override
+            public void onFollowersError(String error) {
+                Log.d("hereeee", error);
+            }
+        });
     }
 
     private void onDeleteButtonClick(int position, String req) {
@@ -46,27 +125,6 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         notifyItemRemoved(position);
         GlobalClass.snippets.updateRequestedToFollowList(GlobalClass.userID, followRequests);
 
-        /*
-        GlobalClass.snippets.getRequestedToFollowList(GlobalClass.userID, new ReadAndWriteSnippets.OnRequestedToFollowListListener() {
-            @Override
-            public void onRequestedToFollowListRetrieved(List<String> requestedToFollowList) {
-                requestedToFollowList.remove(request);
-                GlobalClass.snippets.updateRequestedToFollowList(GlobalClass.userID, requestedToFollowList);
-            }
-
-            @Override
-            public void onRequestedToFollowListNotFound() {
-                // Handle the case where requestedToFollowList is not found
-            }
-
-            @Override
-            public void onRequestedToFollowListRetrieveError(String errorMessage) {
-                // Handle the error in retrieving requestedToFollowList
-
-            }
-        });
-
-         */
 
     }
 
